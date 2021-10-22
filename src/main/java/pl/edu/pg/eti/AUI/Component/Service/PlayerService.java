@@ -1,30 +1,32 @@
-package pl.edu.pg.eti.AUI;
+package pl.edu.pg.eti.AUI.Component.Service;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.edu.pg.eti.AUI.Component.Repository.PlayerRepository;
+import pl.edu.pg.eti.AUI.Player;
 
 import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
-public class CompanyService {
-    private CompanyRepository repository;
+public class PlayerService {
+    private PlayerRepository repository;
 
     @Autowired
-    public CompanyService(@NonNull CompanyRepository repository) {
+    public PlayerService(@NonNull PlayerRepository repository) {
         this.repository = repository;
     }
 
-    public void save(Company company) {
-        repository.save(company);
+    public void save(@NonNull Player player) {
+        repository.save(player);
     }
 
-    public Optional<Company> find(String name) {
+    public Optional<Player> find(String name) {
         return repository.find(name);
     }
 
-    public Stream<Company> findAll() {
+    public Stream<Player> findAll() {
         return repository.findAll();
     }
 

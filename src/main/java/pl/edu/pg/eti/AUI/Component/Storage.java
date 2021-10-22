@@ -1,8 +1,10 @@
-package pl.edu.pg.eti.AUI;
+package pl.edu.pg.eti.AUI.Component;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
+import pl.edu.pg.eti.AUI.Company;
+import pl.edu.pg.eti.AUI.Player;
 
 import java.util.HashSet;
 import java.util.Set;

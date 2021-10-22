@@ -1,8 +1,12 @@
-package pl.edu.pg.eti.AUI;
+package pl.edu.pg.eti.AUI.Component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl.edu.pg.eti.AUI.Company;
+import pl.edu.pg.eti.AUI.Component.Service.CompanyService;
+import pl.edu.pg.eti.AUI.Player;
+import pl.edu.pg.eti.AUI.Component.Service.PlayerService;
 
 import java.util.Optional;
 import java.util.Scanner;

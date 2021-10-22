@@ -1,8 +1,10 @@
-package pl.edu.pg.eti.AUI;
+package pl.edu.pg.eti.AUI.Component.Repository;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import pl.edu.pg.eti.AUI.Player;
+import pl.edu.pg.eti.AUI.Component.Storage;
 
 import java.util.Optional;
 import java.util.stream.Stream;
