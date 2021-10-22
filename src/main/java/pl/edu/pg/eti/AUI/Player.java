@@ -14,5 +14,4 @@ import java.util.Map;
 public class Player {
     @NonNull private String name;
     private int money;
-    @NonNull @Builder.Default private Map<Company, Integer> held_shares = new HashMap<>();
 }

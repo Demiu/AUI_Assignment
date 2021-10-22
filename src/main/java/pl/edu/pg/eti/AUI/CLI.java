@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 @Component
@@ -54,6 +55,7 @@ public class CLI implements CommandLineRunner {
                 }
                 case 0: {
                     exit = true;
+                    break;
                 }
                 default: System.out.println("Invalid option");
             }
@@ -71,11 +73,18 @@ public class CLI implements CommandLineRunner {
             case 1: {
                 System.out.println("Specify the name:");
                 String name = scanner.nextLine();
+                System.out.println("Specify the name of the owner:");
+                String owner_name = scanner.nextLine();
+                Optional<Player> owner = playerService.find(owner_name);
+                if (owner.isEmpty()) {
+                    System.out.println("Couldn't find the player");
+                    return;
+                }
                 System.out.println("Specify the share price:");
                 int price = scanner.nextInt(); scanner.nextLine();
                 System.out.println("Specify the share count");
                 int shares = scanner.nextInt(); scanner.nextLine();
-                companyService.save(new Company(name, price, shares));
+                companyService.save(new Company(name, owner.get(), price, shares));
                 System.out.println("Company added");
                 break;
             }

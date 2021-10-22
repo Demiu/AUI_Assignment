@@ -23,16 +23,16 @@ public class Initializer {
             return;
         }
 
-        Company red = new Company("RED Inc.", 100, 20);
-        Company blue = new Company("BLU Ltd.", 200, 20);
-
-        companyService.save(red);
-        companyService.save(blue);
-
         Player jim = Player.builder().name("Jim").money(1000).build();
         Player bob = Player.builder().name("Bob").money(1250).build();
 
         playerService.save(jim);
         playerService.save(bob);
+
+        Company red = new Company("RED Inc.", jim, 100, 20);
+        Company blue = new Company("BLU Ltd.", bob, 200, 20);
+
+        companyService.save(red);
+        companyService.save(blue);
     }
 }
