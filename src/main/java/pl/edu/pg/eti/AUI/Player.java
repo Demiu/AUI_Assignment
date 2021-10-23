@@ -2,13 +2,26 @@ package pl.edu.pg.eti.AUI;
 
 import lombok.*;
 
-@Getter
-@Setter
+import javax.persistence.*;
+import java.util.List;
+
+@Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Entity
+@Table(name = "players")
 public class Player {
-    @NonNull private String name;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @NonNull
+    private String name;
+
     private int money;
+
+    @OneToMany(mappedBy = "owner")
+    @ToString.Exclude
+    private List<Company> owned_companies;
 }

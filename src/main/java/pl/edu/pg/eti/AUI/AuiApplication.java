@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AuiApplication {
 
-	public static void main(String[] args) {
-		var context = SpringApplication.run(AuiApplication.class, args);
-		SpringApplication.exit(context);
-	}
+    public static void main(String[] args) {
+        var context = SpringApplication.run(AuiApplication.class, args);
+        SpringApplication.exit(context);
+    }
 
 }

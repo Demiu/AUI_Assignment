@@ -23,7 +23,7 @@ public class Initializer {
 
     @PostConstruct
     private void init() {
-        if (companyService.findAll().findAny().isPresent() || playerService.findAll().findAny().isPresent()) {
+        if (companyService.findAll().stream().findAny().isPresent() || playerService.findAll().stream().findAny().isPresent()) {
             return;
         }
 
@@ -33,8 +33,8 @@ public class Initializer {
         playerService.save(jim);
         playerService.save(bob);
 
-        Company red = new Company("RED Inc.", jim, 100, 20);
-        Company blue = new Company("BLU Ltd.", bob, 200, 20);
+        Company red = new Company(null, "RED Inc.", jim, 100, 20);
+        Company blue = new Company(null, "BLU Ltd.", bob, 200, 20);
 
         companyService.save(red);
         companyService.save(blue);

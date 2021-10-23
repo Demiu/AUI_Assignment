@@ -5,8 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.eti.AUI.Company;
 import pl.edu.pg.eti.AUI.Component.Service.CompanyService;
-import pl.edu.pg.eti.AUI.Player;
 import pl.edu.pg.eti.AUI.Component.Service.PlayerService;
+import pl.edu.pg.eti.AUI.Player;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -44,7 +44,7 @@ public class CLI implements CommandLineRunner {
                 }
                 case 2: {
                     System.out.println("Companies:");
-                    companyService.findAll().forEach(System.out::println);
+                    companyService.findAll().stream().forEach(System.out::println);
                     System.out.println("Players:");
                     playerService.findAll().forEach(System.out::println);
                     break;
@@ -61,7 +61,8 @@ public class CLI implements CommandLineRunner {
                     exit = true;
                     break;
                 }
-                default: System.out.println("Invalid option");
+                default:
+                    System.out.println("Invalid option");
             }
         }
 
@@ -72,7 +73,8 @@ public class CLI implements CommandLineRunner {
         System.out.println("1) Add a company");
         System.out.println("2) Add a player");
 
-        int option = scanner.nextInt(); scanner.nextLine();
+        int option = scanner.nextInt();
+        scanner.nextLine();
         switch (option) {
             case 1: {
                 System.out.println("Specify the name:");
@@ -85,10 +87,12 @@ public class CLI implements CommandLineRunner {
                     return;
                 }
                 System.out.println("Specify the share price:");
-                int price = scanner.nextInt(); scanner.nextLine();
+                int price = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Specify the share count");
-                int shares = scanner.nextInt(); scanner.nextLine();
-                companyService.save(new Company(name, owner.get(), price, shares));
+                int shares = scanner.nextInt();
+                scanner.nextLine();
+                companyService.save(new Company(null, name, owner.get(), price, shares));
                 System.out.println("Company added");
                 break;
             }
@@ -96,12 +100,14 @@ public class CLI implements CommandLineRunner {
                 System.out.println("Specify the name:");
                 String name = scanner.nextLine();
                 System.out.println("Specify their money:");
-                int money = scanner.nextInt(); scanner.nextLine();
+                int money = scanner.nextInt();
+                scanner.nextLine();
                 playerService.save(Player.builder().name(name).money(money).build());
                 System.out.println("Player added");
                 break;
             }
-            default: System.out.println("Invalid option");
+            default:
+                System.out.println("Invalid option");
         }
     }
 
@@ -109,23 +115,35 @@ public class CLI implements CommandLineRunner {
         System.out.println("1) Remove a company");
         System.out.println("2) Remove a player");
 
-        int option = scanner.nextInt(); scanner.nextLine();
+        int option = scanner.nextInt();
+        scanner.nextLine();
         switch (option) {
             case 1: {
                 System.out.println("Specify the name:");
                 String name = scanner.nextLine();
-                companyService.delete(name);
-                System.out.println("Company deleted");
+                Optional<Company> company = companyService.find(name);
+                if (company.isPresent()) {
+                    companyService.delete(company.get());
+                    System.out.println("Company deleted");
+                } else {
+                    System.out.println("Company not found");
+                }
                 break;
             }
             case 2: {
                 System.out.println("Specify the name:");
                 String name = scanner.nextLine();
-                playerService.delete(name);
-                System.out.println("Player deleted");
+                Optional<Player> player = playerService.find(name);
+                if (player.isPresent()) {
+                    playerService.delete(player.get());
+                    System.out.println("Player deleted");
+                } else {
+                    System.out.println("Player not found");
+                }
                 break;
             }
-            default: System.out.println("Invalid option");
+            default:
+                System.out.println("Invalid option");
         }
     }
 }

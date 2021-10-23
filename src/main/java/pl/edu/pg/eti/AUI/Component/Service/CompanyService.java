@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import pl.edu.pg.eti.AUI.Company;
 import pl.edu.pg.eti.AUI.Component.Repository.CompanyRepository;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 public class CompanyService {
@@ -22,15 +22,31 @@ public class CompanyService {
         repository.save(company);
     }
 
-    public Optional<Company> find(String name) {
-        return repository.find(name);
+    public Optional<Company> find(@NonNull Long id) {
+        return repository.findById(id);
     }
 
-    public Stream<Company> findAll() {
+    public Optional<Company> find(@NonNull String company_name) {
+        return repository.findByName(company_name);
+    }
+
+    public List<Company> findAll() {
         return repository.findAll();
     }
 
-    public void delete(@NonNull String name) {
-        repository.delete(name);
+    public Company create(@NonNull Company company) {
+        return repository.save(company);
+    }
+
+    public void update(@NonNull Company company) {
+        repository.save(company); // TODO: check if exists?
+    }
+
+    public void delete(@NonNull Long id) {
+        repository.deleteById(id);
+    }
+
+    public void delete(@NonNull Company company) {
+        repository.delete(company); // TODO: check if exists?
     }
 }

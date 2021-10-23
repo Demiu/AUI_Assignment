@@ -1,36 +1,48 @@
 package pl.edu.pg.eti.AUI.Component.Service;
 
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.pg.eti.AUI.Component.Repository.PlayerRepository;
 import pl.edu.pg.eti.AUI.Player;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
+@AllArgsConstructor
 @Service
 public class PlayerService {
     private PlayerRepository repository;
-
-    @Autowired
-    public PlayerService(@NonNull PlayerRepository repository) {
-        this.repository = repository;
-    }
 
     public void save(@NonNull Player player) {
         repository.save(player);
     }
 
-    public Optional<Player> find(String name) {
-        return repository.find(name);
+    public Optional<Player> find(@NonNull Long id) {
+        return repository.findById(id);
     }
 
-    public Stream<Player> findAll() {
+    public Optional<Player> find(@NonNull String player_name) {
+        return repository.findByName(player_name);
+    }
+
+    public List<Player> findAll() {
         return repository.findAll();
     }
 
-    public void delete(@NonNull String name) {
-        repository.delete(name);
+    public Player create(@NonNull Player player) {
+        return repository.save(player);
+    }
+
+    public void update(@NonNull Player player) {
+        repository.save(player); // TODO: check if exists?
+    }
+
+    public void delete(@NonNull Long id) {
+        repository.deleteById(id);
+    }
+
+    public void delete(@NonNull Player player) {
+        repository.delete(player); // TODO: check if exists?
     }
 }
