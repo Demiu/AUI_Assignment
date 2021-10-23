@@ -17,6 +17,7 @@ public class Player {
     private Long id;
 
     @NonNull
+    @Column(unique = true)
     private String name;
 
     private int money;
