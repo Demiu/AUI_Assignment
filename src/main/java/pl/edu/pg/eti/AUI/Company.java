@@ -26,7 +26,7 @@ public class Company {
     @JoinColumn(name = "owner")
     private Player owner;
 
-    private int share_price;
+    private int sharePrice;
 
-    private int remaining_shares;
+    private int remainingShares;
 }

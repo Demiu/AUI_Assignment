@@ -26,8 +26,8 @@ public class CompanyService {
         return repository.findById(id);
     }
 
-    public Optional<Company> find(@NonNull String company_name) {
-        return repository.findByName(company_name);
+    public Optional<Company> find(@NonNull String companyName) {
+        return repository.findByName(companyName);
     }
 
     public List<Company> findAll() {

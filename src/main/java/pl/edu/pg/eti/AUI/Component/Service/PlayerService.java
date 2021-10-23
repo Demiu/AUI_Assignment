@@ -22,8 +22,8 @@ public class PlayerService {
         return repository.findById(id);
     }
 
-    public Optional<Player> find(@NonNull String player_name) {
-        return repository.findByName(player_name);
+    public Optional<Player> find(@NonNull String playerName) {
+        return repository.findByName(playerName);
     }
 
     public List<Player> findAll() {

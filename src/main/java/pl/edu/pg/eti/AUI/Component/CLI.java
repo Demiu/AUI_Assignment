@@ -80,8 +80,8 @@ public class CLI implements CommandLineRunner {
                 System.out.println("Specify the name:");
                 String name = scanner.nextLine();
                 System.out.println("Specify the name of the owner:");
-                String owner_name = scanner.nextLine();
-                Optional<Player> owner = playerService.find(owner_name);
+                String ownerName = scanner.nextLine();
+                Optional<Player> owner = playerService.find(ownerName);
                 if (owner.isEmpty()) {
                     System.out.println("Couldn't find the player");
                     return;

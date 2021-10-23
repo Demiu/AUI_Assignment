@@ -23,5 +23,5 @@ public class Player {
 
     @OneToMany(mappedBy = "owner")
     @ToString.Exclude
-    private List<Company> owned_companies;
+    private List<Company> ownedCompanies;
 }
