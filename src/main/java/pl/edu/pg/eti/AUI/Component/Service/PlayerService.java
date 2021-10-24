@@ -9,6 +9,7 @@ import pl.edu.pg.eti.AUI.Player;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @AllArgsConstructor
 @Transactional(readOnly = true)
@@ -16,16 +17,28 @@ import java.util.Optional;
 public class PlayerService {
     private PlayerRepository repository;
 
-    public Optional<Player> find(@NonNull Long id) {
-        return repository.findById(id);
+    public Optional<Player> find(@NonNull Long id, Consumer<Player>... subqueries) {
+        var found = repository.findById(id);
+        for (var query : subqueries) {
+            found.ifPresent(query);
+        }
+        return found;
     }
 
-    public Optional<Player> find(@NonNull String playerName) {
-        return repository.findByName(playerName);
+    public Optional<Player> find(@NonNull String playerName, Consumer<Player>... subqueries) {
+        var found = repository.findByName(playerName);
+        for (var query : subqueries) {
+            found.ifPresent(query);
+        }
+        return found;
     }
 
-    public List<Player> findAll() {
-        return repository.findAll();
+    public List<Player> findAll(Consumer<Player>... subqueries) {
+        var found = repository.findAll();
+        for(var query : subqueries) {
+            found.forEach(query);
+        }
+        return found;
     }
 
     @Transactional

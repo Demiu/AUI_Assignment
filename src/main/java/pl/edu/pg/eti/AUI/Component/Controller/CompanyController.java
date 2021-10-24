@@ -28,7 +28,7 @@ public class CompanyController {
     }
 
     @GetMapping("{id:[0-9]+}")
-    public ResponseEntity<GetCompanyResponse> getCompany(@PathParam("id") Long id) {
+    public ResponseEntity<GetCompanyResponse> getCompany(@PathVariable("id") Long id) {
         return companyService.find(id)
                 .map(c -> ResponseEntity.ok(GetCompanyResponse.from(c)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -58,7 +58,7 @@ public class CompanyController {
             return ResponseEntity.notFound().build();
         }
         var sameNameCompany = companyService.find(request.getName());
-        if (sameNameCompany.isEmpty()) {
+        if (sameNameCompany.isPresent() && company.get().getId() != sameNameCompany.get().getId()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build(); // TODO: add info about the conflict?
         }
         request.apply(company.get());

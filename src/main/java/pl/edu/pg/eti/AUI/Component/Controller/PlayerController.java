@@ -10,6 +10,7 @@ import pl.edu.pg.eti.AUI.DTO.CreatePlayerRequest;
 import pl.edu.pg.eti.AUI.DTO.GetPlayerResponse;
 import pl.edu.pg.eti.AUI.DTO.GetPlayersResponse;
 import pl.edu.pg.eti.AUI.DTO.UpdatePlayerRequest;
+import pl.edu.pg.eti.AUI.Player;
 
 @AllArgsConstructor
 @RestController
@@ -51,7 +52,7 @@ public class PlayerController {
             return ResponseEntity.notFound().build();
         }
         var sameNamePlayer = playerService.find(request.getName());
-        if (sameNamePlayer.isPresent() && player.get() == sameNamePlayer.get()) {
+        if (sameNamePlayer.isPresent() && player.get().getId() != sameNamePlayer.get().getId()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build(); // TODO: add info about the conflict?
         }
         request.apply(player.get());
