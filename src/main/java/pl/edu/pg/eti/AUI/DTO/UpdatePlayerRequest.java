@@ -1,12 +1,12 @@
 package pl.edu.pg.eti.AUI.DTO;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import pl.edu.pg.eti.AUI.Player;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UpdatePlayerRequest {
 
     private String name;

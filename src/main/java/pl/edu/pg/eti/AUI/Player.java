@@ -22,8 +22,8 @@ public class Player {
 
     private int money;
 
-    @OneToMany(mappedBy = "owner")
-    @ToString.Exclude
     @Singular
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ToString.Exclude
     private List<Company> ownedCompanies;
 }

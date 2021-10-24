@@ -2,7 +2,6 @@ package pl.edu.pg.eti.AUI.DTO;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 import pl.edu.pg.eti.AUI.Player;
 
 @Data

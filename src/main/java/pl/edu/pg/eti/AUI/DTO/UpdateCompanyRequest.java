@@ -4,9 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import pl.edu.pg.eti.AUI.Company;
-import pl.edu.pg.eti.AUI.Player;
-
-import java.util.function.Function;
 
 @Data
 @Builder

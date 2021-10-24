@@ -44,7 +44,7 @@ public class CLI implements CommandLineRunner {
                 }
                 case 2: {
                     System.out.println("Companies:");
-                    companyService.findAll().stream().forEach(System.out::println);
+                    companyService.findAll().forEach(System.out::println);
                     System.out.println("Players:");
                     playerService.findAll().forEach(System.out::println);
                     break;
@@ -92,7 +92,7 @@ public class CLI implements CommandLineRunner {
                 System.out.println("Specify the share count");
                 int shares = scanner.nextInt();
                 scanner.nextLine();
-                companyService.save(new Company(null, name, owner.get(), price, shares));
+                companyService.create(new Company(null, name, owner.get(), price, shares));
                 System.out.println("Company added");
                 break;
             }
@@ -102,7 +102,7 @@ public class CLI implements CommandLineRunner {
                 System.out.println("Specify their money:");
                 int money = scanner.nextInt();
                 scanner.nextLine();
-                playerService.save(Player.builder().name(name).money(money).build());
+                playerService.create(Player.builder().name(name).money(money).build());
                 System.out.println("Player added");
                 break;
             }

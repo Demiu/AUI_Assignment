@@ -30,13 +30,13 @@ public class Initializer {
         Player jim = Player.builder().name("Jim").money(1000).build();
         Player bob = Player.builder().name("Bob").money(1250).build();
 
-        playerService.save(jim);
-        playerService.save(bob);
+        playerService.create(jim);
+        playerService.create(bob);
 
         Company red = new Company(null, "RED Inc.", jim, 100, 20);
         Company blue = new Company(null, "BLU Ltd.", bob, 200, 20);
 
-        companyService.save(red);
-        companyService.save(blue);
+        companyService.create(red);
+        companyService.create(blue);
     }
 }

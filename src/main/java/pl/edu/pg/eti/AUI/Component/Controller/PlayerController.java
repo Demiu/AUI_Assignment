@@ -38,7 +38,7 @@ public class PlayerController {
         var player = playerService.create(request.into());
         return ResponseEntity.created(
                 builder
-                        .pathSegment("api", "characters", "{id}")
+                        .pathSegment("api", "players", "{id}")
                         .buildAndExpand(player.getId())
                         .toUri())
                 .build();

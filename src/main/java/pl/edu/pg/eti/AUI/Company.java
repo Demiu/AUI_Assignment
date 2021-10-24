@@ -19,9 +19,8 @@ public class Company {
     @Column(unique = true)
     private String name;
 
-    @NonNull
     @ManyToOne
-    @JoinColumn(name = "owner")
+    @JoinColumn(name = "owner_id", nullable = true)
     private Player owner;
 
     private int sharePrice;
