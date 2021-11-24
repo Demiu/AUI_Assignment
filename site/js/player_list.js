@@ -26,7 +26,7 @@ function createTableRow(player) {
     let tr = document.createElement('tr');
     tr.appendChild(createTextCell(player.id));
     tr.appendChild(createTextCell(player.name));
-    tr.appendChild(createLinkCell('view', 'player_view.html?id=' + player.id));
+    tr.appendChild(createLinkCell('view', `player_view.html?id=${player.id}`));
     tr.appendChild(createButtonCell('delete', () => deletePlayer(player)));
     return tr;
 }
