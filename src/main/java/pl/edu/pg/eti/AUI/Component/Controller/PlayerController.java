@@ -10,7 +10,6 @@ import pl.edu.pg.eti.AUI.DTO.CreatePlayerRequest;
 import pl.edu.pg.eti.AUI.DTO.GetPlayerResponse;
 import pl.edu.pg.eti.AUI.DTO.GetPlayersResponse;
 import pl.edu.pg.eti.AUI.DTO.UpdatePlayerRequest;
-import pl.edu.pg.eti.AUI.Player;
 
 @AllArgsConstructor
 @RestController

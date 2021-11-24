@@ -1,15 +1,16 @@
 package pl.edu.pg.eti.AUI.Component.Controller;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.edu.pg.eti.AUI.Component.Service.CompanyService;
 import pl.edu.pg.eti.AUI.Component.Service.PlayerService;
-import pl.edu.pg.eti.AUI.DTO.*;
+import pl.edu.pg.eti.AUI.DTO.CreateCompanyRequest;
+import pl.edu.pg.eti.AUI.DTO.GetCompaniesResponse;
+import pl.edu.pg.eti.AUI.DTO.GetCompanyResponse;
+import pl.edu.pg.eti.AUI.DTO.UpdateCompanyRequest;
 import pl.edu.pg.eti.AUI.Player;
 
 @AllArgsConstructor

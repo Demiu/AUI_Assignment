@@ -12,8 +12,6 @@ import pl.edu.pg.eti.AUI.DTO.GetCompaniesResponse;
 import pl.edu.pg.eti.AUI.DTO.GetCompanyResponse;
 import pl.edu.pg.eti.AUI.DTO.UpdateCompanyRequest;
 
-import javax.websocket.server.PathParam;
-
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/companies")
