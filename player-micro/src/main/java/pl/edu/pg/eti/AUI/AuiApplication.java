@@ -8,7 +8,7 @@ public class AuiApplication {
 
     public static void main(String[] args) {
         var context = SpringApplication.run(AuiApplication.class, args);
-        SpringApplication.exit(context);
+        //SpringApplication.exit(context); // we just run indefinitely, whatever manages us is responsible for exit
     }
 
 }
