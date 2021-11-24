@@ -15,15 +15,15 @@ public class PlayerEventRepository {
     private final RestTemplate companyMicroRest;
 
     @Autowired
-    PlayerEventRepository(@Value("${internal_api.companies.url}") String companyUrl) {
+    PlayerEventRepository(@Value("${api.companies.url}") String companyUrl) {
         companyMicroRest = new RestTemplateBuilder().rootUri(companyUrl).build();
     }
 
     public void create(@NonNull Player player) {
-        companyMicroRest.postForLocation("/players", CreatePlayerEventRequest.from(player));
+        companyMicroRest.postForLocation("/api/players", CreatePlayerEventRequest.from(player));
     }
 
     public void delete(@NonNull Player player) {
-        companyMicroRest.delete("/players/{id}", player.getId());
+        companyMicroRest.delete("/api/players/{id}", player.getId());
     }
 }
