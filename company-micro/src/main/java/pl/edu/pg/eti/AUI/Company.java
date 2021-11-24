@@ -20,7 +20,7 @@ public class Company {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = true)
+    @JoinColumn(name = "owner_id")
     private Player owner;
 
     private int sharePrice;

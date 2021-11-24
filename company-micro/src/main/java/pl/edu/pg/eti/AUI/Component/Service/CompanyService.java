@@ -16,8 +16,8 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 @Service
 public class CompanyService {
-    private CompanyRepository repository;
-    private PlayerRepository playerRepository;
+    private final CompanyRepository repository;
+    private final PlayerRepository playerRepository;
 
     public Optional<Company> find(@NonNull Long id) {
         return repository.findById(id);

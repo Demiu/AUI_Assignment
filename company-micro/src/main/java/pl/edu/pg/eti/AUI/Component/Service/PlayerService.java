@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 @Transactional(readOnly = true)
 @Service
 public class PlayerService {
-    private PlayerRepository repository;
+    private final PlayerRepository repository;
 
     public Optional<Player> find(@NonNull Long id, Consumer<Player>... subqueries) {
         var found = repository.findById(id);

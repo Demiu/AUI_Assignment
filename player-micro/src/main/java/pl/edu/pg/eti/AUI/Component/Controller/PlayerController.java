@@ -16,7 +16,7 @@ import pl.edu.pg.eti.AUI.DTO.UpdatePlayerRequest;
 @RequestMapping("/api/players")
 public class PlayerController {
 
-    private PlayerService playerService;
+    private final PlayerService playerService;
 
     @GetMapping
     public ResponseEntity<GetPlayersResponse> getPlayers() {
@@ -51,7 +51,7 @@ public class PlayerController {
             return ResponseEntity.notFound().build();
         }
         var sameNamePlayer = playerService.find(request.getName());
-        if (sameNamePlayer.isPresent() && player.get().getId() != sameNamePlayer.get().getId()) {
+        if (sameNamePlayer.isPresent() && !(player.get().getId().equals(sameNamePlayer.get().getId()))) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build(); // TODO: add info about the conflict?
         }
         request.apply(player.get());

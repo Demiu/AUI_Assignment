@@ -12,9 +12,10 @@ import pl.edu.pg.eti.AUI.Player;
 @Repository
 public class PlayerEventRepository {
 
-    private RestTemplate companyMicroRest;
+    private final RestTemplate companyMicroRest;
 
-    @Autowired PlayerEventRepository(@Value("${internal_api.companies.url}") String companyUrl) {
+    @Autowired
+    PlayerEventRepository(@Value("${internal_api.companies.url}") String companyUrl) {
         companyMicroRest = new RestTemplateBuilder().rootUri(companyUrl).build();
     }
 

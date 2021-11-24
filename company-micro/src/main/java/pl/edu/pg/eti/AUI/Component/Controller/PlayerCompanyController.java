@@ -18,8 +18,8 @@ import pl.edu.pg.eti.AUI.Player;
 @RequestMapping("/api/players/{player_id:[0-9]+}/companies")
 public class PlayerCompanyController {
 
-    private PlayerService playerService;
-    private CompanyService companyService;
+    private final PlayerService playerService;
+    private final CompanyService companyService;
 
     @GetMapping
     public ResponseEntity<GetCompaniesResponse> getCompanies(@PathVariable("player_id") Long p_id) {
@@ -46,7 +46,7 @@ public class PlayerCompanyController {
         if (playerService.find(request.getOwnerPlayerId()).isEmpty() && playerService.find(p_id).isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
         }
-        if (request.getOwnerPlayerId() != p_id) {
+        if (!request.getOwnerPlayerId().equals(p_id)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         var company = companyService.create(request.into(id -> playerService.find(id).get()));
@@ -67,7 +67,7 @@ public class PlayerCompanyController {
             return ResponseEntity.notFound().build();
         }
         var sameNameCompany = companyService.find(request.getName());
-        if (sameNameCompany.isPresent() && company.get().getId() != sameNameCompany.get().getId()) {
+        if (sameNameCompany.isPresent() && !(company.get().getId().equals(sameNameCompany.get().getId()))) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build(); // TODO: add info about the conflict?
         }
         request.apply(company.get());

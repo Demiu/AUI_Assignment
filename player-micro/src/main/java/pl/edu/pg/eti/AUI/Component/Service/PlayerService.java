@@ -16,8 +16,8 @@ import java.util.function.Consumer;
 @Transactional(readOnly = true)
 @Service
 public class PlayerService {
-    private PlayerRepository repository;
-    private PlayerEventRepository eventRepository;
+    private final PlayerRepository repository;
+    private final PlayerEventRepository eventRepository;
 
     public Optional<Player> find(@NonNull Long id, Consumer<Player>... subqueries) {
         var found = repository.findById(id);
@@ -54,11 +54,6 @@ public class PlayerService {
     public void update(@NonNull Player player) {
         repository.save(player); // TODO: check if exists?
     }
-
-    /*@Transactional
-    public void delete(@NonNull Long id) {
-        repository.deleteById(id);
-    }*/
 
     @Transactional
     public void delete(@NonNull Player player) {

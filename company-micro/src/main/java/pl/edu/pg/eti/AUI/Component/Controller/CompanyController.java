@@ -17,8 +17,8 @@ import pl.edu.pg.eti.AUI.DTO.UpdateCompanyRequest;
 @RequestMapping("/api/companies")
 public class CompanyController {
 
-    private CompanyService companyService;
-    private PlayerService playerService;
+    private final CompanyService companyService;
+    private final PlayerService playerService;
 
     @GetMapping
     public ResponseEntity<GetCompaniesResponse> getCompanies() {
@@ -56,7 +56,7 @@ public class CompanyController {
             return ResponseEntity.notFound().build();
         }
         var sameNameCompany = companyService.find(request.getName());
-        if (sameNameCompany.isPresent() && company.get().getId() != sameNameCompany.get().getId()) {
+        if (sameNameCompany.isPresent() && !(company.get().getId().equals(sameNameCompany.get().getId()))) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build(); // TODO: add info about the conflict?
         }
         request.apply(company.get());

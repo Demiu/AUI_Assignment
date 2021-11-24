@@ -12,7 +12,7 @@ import pl.edu.pg.eti.AUI.DTO.Event.CreatePlayerEventRequest;
 @RequestMapping("/api/players")
 public class PlayerEventController {
 
-    private PlayerService playerService;
+    private final PlayerService playerService;
 
     @PostMapping
     public ResponseEntity<Void> createPlayer(@RequestBody CreatePlayerEventRequest request, UriComponentsBuilder builder) {
