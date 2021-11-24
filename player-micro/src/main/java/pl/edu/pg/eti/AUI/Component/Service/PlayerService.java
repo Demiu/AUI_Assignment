@@ -57,7 +57,7 @@ public class PlayerService {
 
     @Transactional
     public void delete(@NonNull Player player) {
-        repository.delete(player); // TODO: check if exists?
         eventRepository.delete(player);
+        repository.delete(player); // TODO: check if exists?
     }
 }

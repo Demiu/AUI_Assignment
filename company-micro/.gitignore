@@ -48,6 +48,3 @@ buildNumber.properties
 .mvn/wrapper/*
 mvnw
 mvnw.cmd
-
-### Derby ###
-derby.log
