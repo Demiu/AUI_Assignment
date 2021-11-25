@@ -4,11 +4,13 @@ import { clearElementChildren, createButtonCell, createLinkCell, createTextCell,
 const id = getParameterByName('id');
 
 window.addEventListener('load', () => { 
-    fetchAndDisplayPlayer(); 
-    fetchAndDisplayCompanies();
-
     const form = document.getElementById('playerForm');
     form.addEventListener('submit', event => updatePlayer(event));
+    const newCompanyLink = document.getElementById('newCompanyLink');
+    newCompanyLink.setAttribute('href', `company_create.html?owner_id=${id}`)
+
+    fetchAndDisplayPlayer(); 
+    fetchAndDisplayCompanies();
 });
 
 function fetchAndDisplayPlayer() {
