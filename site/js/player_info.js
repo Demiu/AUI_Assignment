@@ -1,8 +1,11 @@
 import { gatewayUrl } from "./config.js";
-import { getParameterByName } from "./util.js";
+import { clearElementChildren, createButtonCell, createLinkCell, createTextCell, getParameterByName } from "./util.js";
+
+const id = getParameterByName('id');
 
 window.addEventListener('load', () => { 
     fetchAndDisplayPlayer(); 
+    fetchAndDisplayCompanies();
 
     const form = document.getElementById('playerForm');
     form.addEventListener('submit', event => updatePlayer(event));
@@ -15,7 +18,7 @@ function fetchAndDisplayPlayer() {
             displayPlayer(JSON.parse(this.responseText));
         }
     };
-    xhttp.open("GET", `${gatewayUrl}/api/players/${getParameterByName('id')}`, true);
+    xhttp.open("GET", `${gatewayUrl}/api/players/${id}`, true);
     xhttp.send();
 }
 
@@ -38,18 +41,56 @@ function updatePlayer(event) {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4) {
             fetchAndDisplayPlayer();
-            displayRequestResult(this.status);
+            displayUpdateResult(this.status);
         }
     };
-    xhttp.open("PUT", `${gatewayUrl}/api/players/${getParameterByName('id')}`, true);
+    xhttp.open("PUT", `${gatewayUrl}/api/players/${id}`, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(request));
 }
 
-function displayRequestResult(status) {
-    const id = getParameterByName('id');
+function displayUpdateResult(status) {
     const display = document.getElementById('resultDisplay');
     display.textContent = (status == 202) 
         ? `Succesfully updated player#${id}` 
         : `Updating player#${id} failed (${status})`;
+}
+
+function fetchAndDisplayCompanies() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            populateCompaniesTable(JSON.parse(this.responseText));
+        }
+    };
+    xhttp.open('GET', `${gatewayUrl}/api/players/${id}/companies`, true);
+    xhttp.send();
+}
+
+function populateCompaniesTable(companiesResponse) {
+    let tableBody = document.getElementById('companiesTableBody');
+    clearElementChildren(tableBody);
+    companiesResponse.companies.forEach(companies => {
+        tableBody.appendChild(createTableRow(companies));
+    });
+}
+
+function createTableRow(company) {
+    let tr = document.createElement('tr');
+    tr.appendChild(createTextCell(company.id));
+    tr.appendChild(createTextCell(company.name));
+    tr.appendChild(createLinkCell('view', `company_info.html?id=${company.id}`));
+    tr.appendChild(createButtonCell('delete', () => deleteCompany(company)));
+    return tr;
+}
+
+function deleteCompany(company) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 202) {
+            fetchAndDisplayCompanies();
+        }
+    };
+    xhttp.open("DELETE", `${gatewayUrl}/api/players/${id}/companies/${company.id}`, true);
+    xhttp.send();
 }
