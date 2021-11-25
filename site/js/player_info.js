@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
     const form = document.getElementById('playerForm');
     form.addEventListener('submit', event => updatePlayer(event));
     const newCompanyLink = document.getElementById('newCompanyLink');
-    newCompanyLink.setAttribute('href', `company_create.html?owner_id=${id}`)
+    newCompanyLink.setAttribute('href', `company_create.html?owner-id=${id}`)
 
     fetchAndDisplayPlayer(); 
     fetchAndDisplayCompanies();

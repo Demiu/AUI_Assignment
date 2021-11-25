@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <title>AUI</title>
-    <script async type="module" src="js/player_create.js"></script>
+    <script async type="module" src="js/company_create.js"></script>
 </head>
 <body>
     <header class="header">
         <h1>AUI lab</h1>
-        <h2>new player</h2>
+        <h2>new company</h2>
     </header>
 
     <nav>
@@ -20,14 +20,22 @@
     </nav>
 
     <main>
-        <form id="newPlayerForm">
+        <form id="newCompanyForm">
             <p>
                 <label for="name">Name</label>
                 <input id="name" required name="name"/>
             </p>
             <p>
-                <label for="money">Money</label>
-                <input id="money" required name="money" type="number" min="0" step="1"/>
+                <label for="ownerId">Owner id</label>
+                <input id="ownerId" required name="ownerId" disabled/>
+            </p>
+            <p>
+                <label for="sharePrice">Share price</label>
+                <input id="sharePrice" required name="sharePrice" type="number" min="0" step="1"/>
+            </p>
+            <p>
+                <label for="shares">remainingShares</label>
+                <input id="shares" required name="shares" type="number" min="0" step="1"/>
             </p>
             <p><input type="submit" name="Create" value="Create"/></p>
         </form>
