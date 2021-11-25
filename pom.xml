@@ -9,7 +9,7 @@
 	<name>AUI</name>
 	<description>Laboratory assignment from AUI, parent project</description>
 	
-	<packaging>pom<packaging/>
+	<packaging>pom</packaging>
 	
 	<modules>
 		<module>player-micro</module>
