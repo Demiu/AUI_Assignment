@@ -1,3 +1,7 @@
+export function getParameterByName(name) {
+    return new URLSearchParams(window.location.search).get(name);
+}
+
 export function clearElementChildren(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);

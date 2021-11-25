@@ -18,7 +18,7 @@ function createPlayer(event) {
             displayResult(this.status, request.name)
         }
     };
-    xhttp.open("POST", gatewayUrl + '/api/players', true);
+    xhttp.open("POST", `${gatewayUrl}/api/players`, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(request));
 }

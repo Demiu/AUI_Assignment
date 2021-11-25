@@ -10,7 +10,7 @@ function fetchAndDisplayPlayers() {
             populatePlayersTable(JSON.parse(this.responseText));
         }
     };
-    xhttp.open('GET', gatewayUrl + '/api/players', true);
+    xhttp.open('GET', `${gatewayUrl}/api/players`, true);
     xhttp.send();
 }
 
@@ -26,7 +26,7 @@ function createTableRow(player) {
     let tr = document.createElement('tr');
     tr.appendChild(createTextCell(player.id));
     tr.appendChild(createTextCell(player.name));
-    tr.appendChild(createLinkCell('view', `player_view.html?id=${player.id}`));
+    tr.appendChild(createLinkCell('view', `player_info.html?id=${player.id}`));
     tr.appendChild(createButtonCell('delete', () => deletePlayer(player)));
     return tr;
 }
@@ -38,6 +38,6 @@ function deletePlayer(player) {
             fetchAndDisplayPlayers();
         }
     };
-    xhttp.open("DELETE", gatewayUrl + '/api/players/' + player.id, true);
+    xhttp.open("DELETE", `${gatewayUrl}/api/players/${player.id}`, true);
     xhttp.send();
 }
