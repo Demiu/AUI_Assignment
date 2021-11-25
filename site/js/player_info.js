@@ -1,7 +1,7 @@
 import { gatewayUrl } from "./config.js";
 import { clearElementChildren, createButtonCell, createLinkCell, createTextCell, getParameterByName } from "./util.js";
 
-const id = getParameterByName('id');
+const id = getParameterByName('id'); // required
 
 window.addEventListener('load', () => { 
     const form = document.getElementById('playerForm');
@@ -81,7 +81,7 @@ function createTableRow(company) {
     let tr = document.createElement('tr');
     tr.appendChild(createTextCell(company.id));
     tr.appendChild(createTextCell(company.name));
-    tr.appendChild(createLinkCell('view', `company_info.html?id=${company.id}`));
+    tr.appendChild(createLinkCell('view', `company_info.html?id=${company.id}&owner-id=${id}`));
     tr.appendChild(createButtonCell('delete', () => deleteCompany(company)));
     return tr;
 }

@@ -1,10 +1,11 @@
 import { gatewayUrl } from "./config.js";
 import { getParameterByName } from "./util.js";
 
-const ownerId = getParameterByName('owner-id');
+const ownerId = getParameterByName('owner-id'); // optional
 
 window.addEventListener('load', () => {
     setupOwnerIdInput();
+
     const form = document.getElementById('newCompanyForm');
     form.addEventListener('submit', event => createCompany(event));
 });
