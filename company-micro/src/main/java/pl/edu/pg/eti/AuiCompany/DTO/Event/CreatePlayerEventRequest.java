@@ -1,18 +1,9 @@
 package pl.edu.pg.eti.AuiCompany.DTO.Event;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import pl.edu.pg.eti.AuiCommon.DTO.Event.CreatePlayerEventRequestBase;
 import pl.edu.pg.eti.AuiCompany.Player;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CreatePlayerEventRequest {
-    private Long id;
-
+public class CreatePlayerEventRequest extends CreatePlayerEventRequestBase {
     public Player into() {
         return Player.builder()
                 .id(getId())

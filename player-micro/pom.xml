@@ -39,6 +39,11 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>pl.edu.pg.eti</groupId>
+			<artifactId>AUI-Common</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -46,14 +51,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<compilerArgument>-Xlint:unchecked</compilerArgument>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
