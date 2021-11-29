@@ -17,7 +17,8 @@ import java.util.function.Consumer;
 public class PlayerService {
     private final PlayerRepository repository;
 
-    public Optional<Player> find(@NonNull Long id, Consumer<Player>... subqueries) {
+    @SafeVarargs
+    public final Optional<Player> find(@NonNull Long id, Consumer<Player>... subqueries) {
         var found = repository.findById(id);
         for (var query : subqueries) {
             found.ifPresent(query);
@@ -25,7 +26,8 @@ public class PlayerService {
         return found;
     }
 
-    public List<Player> findAll(Consumer<Player>... subqueries) {
+    @SafeVarargs
+    public final List<Player> findAll(Consumer<Player>... subqueries) {
         var found = repository.findAll();
         for(var query : subqueries) {
             found.forEach(query);

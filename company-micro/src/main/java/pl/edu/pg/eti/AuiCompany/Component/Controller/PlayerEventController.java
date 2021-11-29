@@ -15,7 +15,7 @@ public class PlayerEventController {
     private final PlayerService playerService;
 
     @PostMapping
-    public ResponseEntity<Void> createPlayer(@RequestBody CreatePlayerEventRequest request, UriComponentsBuilder builder) {
+    public final ResponseEntity<Void> createPlayer(@RequestBody CreatePlayerEventRequest request, UriComponentsBuilder builder) {
         var player = playerService.create(request.into());
         return ResponseEntity.created(
                 builder

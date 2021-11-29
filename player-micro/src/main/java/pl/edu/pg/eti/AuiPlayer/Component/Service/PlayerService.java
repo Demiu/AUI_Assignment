@@ -19,28 +19,16 @@ public class PlayerService {
     private final PlayerRepository repository;
     private final PlayerEventRepository eventRepository;
 
-    public Optional<Player> find(@NonNull Long id, Consumer<Player>... subqueries) {
-        var found = repository.findById(id);
-        for (var query : subqueries) {
-            found.ifPresent(query);
-        }
-        return found;
+    public Optional<Player> find(@NonNull Long id) {
+        return repository.findById(id);
     }
 
-    public Optional<Player> find(@NonNull String playerName, Consumer<Player>... subqueries) {
-        var found = repository.findByName(playerName);
-        for (var query : subqueries) {
-            found.ifPresent(query);
-        }
-        return found;
+    public Optional<Player> find(@NonNull String playerName) {
+        return repository.findByName(playerName);
     }
 
-    public List<Player> findAll(Consumer<Player>... subqueries) {
-        var found = repository.findAll();
-        for(var query : subqueries) {
-            found.forEach(query);
-        }
-        return found;
+    public List<Player> findAll() {
+        return repository.findAll();
     }
 
     @Transactional
